@@ -6,11 +6,70 @@
     <servlet>
         <servlet-name>mvc-dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value></param-value>
+            <load-on-startup>1</load-on-startup>
+        </init-param>
     </servlet>
     
     <servlet-mapping>
         <servlet-name>mvc-dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <!--LightAdminConfig-->
+    <context-param>
+        <param-name>light:administration:base-url</param-name>
+        <param-value>/admin</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>light:administration:security</param-name>
+        <param-value>false</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>light:administration:base-package</param-name>
+        <param-value>com.anmi.webapp.services.ligtadmin</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>light:administration:back-to-site-url</param-name>
+        <param-value>http://localhost:8080/basic-web-app</param-value>
+    </context-param>
+
+    <!--Enable file streaming for entity picture-->
+    <context-param>
+        <param-name>light:administration:file-streaming</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <!-- The master configuration file for this Spring web application -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/mvc-dispatcher-servlet.xml
+        </param-value>
+    </context-param>
+
+
+    <!-- Loads the Spring web application context -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- Enables Spring Security -->
+    <!--<filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <servlet-name>mvc-dispatcher</servlet-name>
+    </filter-mapping>-->
+
+
 
 </web-app>

@@ -1,6 +1,6 @@
 package com.anmi.webapp.controllers;
 
-import com.anmi.webapp.services.AccountService;
+import com.anmi.webapp.services.jpa.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +13,7 @@ public class IndexController {
 
     @RequestMapping("/")
     public String index(){
-        accountService.getOne(1L);
+        accountService.findOne(1L);
         return "index";
     }
 }

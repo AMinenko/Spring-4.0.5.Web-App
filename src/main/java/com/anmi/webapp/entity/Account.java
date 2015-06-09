@@ -11,16 +11,21 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Lob
+    private byte[] picture;
 
     @Column(name = "first_name", nullable= false)
     private java.lang.String firstName;
 
+
     @Column(name = "last_name", nullable= false)
     private java.lang.String lastName;
 
-    @Enumerated(EnumType.ORDINAL)
+    //@Enumerated(EnumType.ORDINAL)
     @Column(name = "account_type")
-    private AccountType accountType;
+    private String accountType;
+
+    private Boolean admin;
 
    // @Column(nullable = false)
     private java.lang.String email;
@@ -31,7 +36,21 @@ public class Account {
     @Column //(columnDefinition = "default = 'default.jpg'")
     private java.lang.String imgPath;
 
-    public AccountType getAccountType() {
+
+
+    public enum AccountType {
+        ADMIN,USER,MAINTENACE;
+    }
+
+    public Boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
+    }
+
+    public String getAccountType() {
         return accountType;
     }
 
@@ -43,8 +62,8 @@ public class Account {
         this.lastName = lastName;
     }
 
-    public void setAccountType(AccountType accountType) {
-        this.accountType = accountType;
+    public void setAccountType(String string) {
+        this.accountType = string;
     }
 
     public Long getId() {
@@ -85,5 +104,13 @@ public class Account {
 
     public void setImgPath(java.lang.String imgPath) {
         this.imgPath = imgPath;
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
     }
 }

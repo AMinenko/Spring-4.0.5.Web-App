@@ -24,7 +24,29 @@
         <!-- DataSource version -->
         <dataSource.version>1.4</dataSource.version>
 
+        <springsecurity-version>3.1.3.RELEASE</springsecurity-version>
+
     </properties>
+
+    <repositories>
+        <repository>
+            <id>lightadmin-nexus-snapshots</id>
+            <url>http://lightadmin.org/nexus/content/repositories/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>lightadmin-nexus-releases</id>
+            <url>http://lightadmin.org/nexus/content/repositories/releases</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+        </repository>
+    </repositories>
 
     <dependencyManagement>
         <dependencies>
@@ -35,6 +57,9 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+
+
         </dependencies>
     </dependencyManagement>
 
@@ -108,6 +133,49 @@
             <version>${mockito.version}</version>
 
         </dependency>
+
+        <!--Ligt Admin -->
+        <dependency>
+            <groupId>org.lightadmin</groupId>
+            <artifactId>lightadmin</artifactId>
+            <version>1.0.1.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${springsecurity-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-aop</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${springsecurity-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-aop</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${springsecurity-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-aop</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
 
     </dependencies>
 
