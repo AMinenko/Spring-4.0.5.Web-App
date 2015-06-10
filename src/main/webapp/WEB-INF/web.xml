@@ -24,11 +24,11 @@
         <param-value>/admin</param-value>
     </context-param>
 
-    <context-param>
+  <!--  <context-param>
         <param-name>light:administration:security</param-name>
         <param-value>false</param-value>
     </context-param>
-
+-->
     <context-param>
         <param-name>light:administration:base-package</param-name>
         <param-value>com.anmi.webapp.services.ligtadmin</param-value>
@@ -60,7 +60,7 @@
     </listener>
 
     <!-- Enables Spring Security -->
-    <!--<filter>
+    <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
@@ -68,8 +68,7 @@
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
         <servlet-name>mvc-dispatcher</servlet-name>
-    </filter-mapping>-->
-
+    </filter-mapping>
 
 
 </web-app>
