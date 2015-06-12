@@ -39,6 +39,11 @@
         <param-value>http://localhost:8080/basic-web-app</param-value>
     </context-param>
 
+    <context-param>
+        <param-name>light:administration:security-logout-url</param-name>
+        <param-value>/j_spring_security_logout</param-value>
+    </context-param>
+
     <!--Enable file streaming for entity picture-->
     <context-param>
         <param-name>light:administration:file-streaming</param-name>
@@ -66,8 +71,13 @@
     </filter>
 
     <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <servlet-name>mvc-dispatcher</servlet-name>
+    </filter-mapping>
+
+    <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
-        <servlet-name>mvc-dispatcher</servlet-name>
+        <servlet-name>lightadmin-dispatcher</servlet-name>
     </filter-mapping>
 
 

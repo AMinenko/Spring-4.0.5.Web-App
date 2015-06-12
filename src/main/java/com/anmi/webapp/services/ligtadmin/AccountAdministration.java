@@ -1,6 +1,7 @@
 package com.anmi.webapp.services.ligtadmin;
 
 import com.anmi.webapp.entity.Account;
+import com.anmi.webapp.entity.Role;
 import com.anmi.webapp.services.ligtadmin.renderers.CustomNameRenderer;
 import org.lightadmin.api.config.AdministrationConfiguration;
 import org.lightadmin.api.config.builder.EntityMetadataConfigurationUnitBuilder;
@@ -27,30 +28,31 @@ public class AccountAdministration extends AdministrationConfiguration<Account> 
 
     public  FieldSetConfigurationUnit listView( final FieldSetConfigurationUnitBuilder fragmentBuilder ) {
         return fragmentBuilder
-                .field("firstName").caption("First Name")
-                .renderable(new CustomNameRenderer()).caption("Custom Rendered Name")
-                .field("admin").caption("is Admin")
-                .field("accountType").caption("Account type")
+                .field("userName").caption("User Name")
+                .renderable(new CustomNameRenderer()).caption("Customer Name")
+                .field("enabled").caption("Enabled")
+                .field("userRole").caption("Account Roles")
                 .build();
     }
 
     public FieldSetConfigurationUnit formView( final PersistentFieldSetConfigurationUnitBuilder fragmentBuilder ) {
         return fragmentBuilder
+                .field("userName").caption("User Name")
                 .field("firstName").caption("First Name")
                 .field("lastName").caption("Last Name")
                 .field("password").caption("Password")
-                .field("admin").caption("is Admin")
+                .field("enabled").caption("Enabled ?")
                 .field("firstName").caption("First Name")
                 .field("picture").caption( "Picture")
-                .field("accountType").caption("Account type").enumeration(
-                        EnumElement.element("1", Account.AccountType.ADMIN.name()),
-                        EnumElement.element("2", Account.AccountType.MAINTENACE.name()),
-                        EnumElement.element("3", Account.AccountType.USER.name()))
+                .field("userRole").caption("Account Roles").enumeration(
+                        EnumElement.element(1, Role.AccountRole.ROLE_ADMIN.name()),
+                        EnumElement.element(2, Role.AccountRole.ROLE_USER.name()))
                 .build();
     }
 
     public FieldSetConfigurationUnit quickView( final PersistentFieldSetConfigurationUnitBuilder fragmentBuilder ) {
         return fragmentBuilder
+                .field("userName").caption("User Name")
                 .field("firstName").caption("First Name").field("picture").caption( "Picture" ).build();
     }
 
