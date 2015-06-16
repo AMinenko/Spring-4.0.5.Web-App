@@ -13,7 +13,7 @@
         <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
         <security:logout logout-success-url="/"
                          delete-cookies="JSESSIONID" />
-        
+
     </security:http>
 
 
