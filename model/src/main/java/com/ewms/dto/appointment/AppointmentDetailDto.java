@@ -10,7 +10,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AppointmentResponse {
+public class AppointmentDetailDto {
     private String driver;
     private String email;
     private BigDecimal trFrontTemp;

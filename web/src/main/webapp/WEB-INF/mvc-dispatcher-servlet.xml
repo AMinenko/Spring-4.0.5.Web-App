@@ -12,12 +12,5 @@
     <import resource="spring-data.xml"/>
     <bean id="reqValidator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
 
-    <!--<import resource="spring-data.xml"/>-->
-
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-        <property name="prefix" value="/WEB-INF/jsp/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>
-
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver"/>
 </beans>

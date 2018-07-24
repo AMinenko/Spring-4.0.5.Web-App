@@ -8,7 +8,6 @@ import com.ewms.service.appointment.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
 import java.util.List;
 
 @Service
@@ -17,9 +16,12 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Autowired
     private AppointmentDao appointmentDao;
 
+    @Autowired
+    private AppointmentQueryDao appointmentQueryDao;
+
     @Override
     public Appointment create(Appointment appointment) {
-     return    appointmentDao.save(appointment);
+     return appointmentDao.saveAndFlush(appointment);
     }
 
     @Override
@@ -30,5 +32,25 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public Appointment findById(Long id) {
         return appointmentDao.findById(id);
+    }
+
+    @Override
+    public Appointment findByPalletQtyAndDriverName(Long palletQty, String driverName) {
+        return appointmentDao.findByPalletQtyAndDriverName(palletQty, driverName);
+    }
+
+    @Override
+    public Appointment removeById(Long id) {
+        return appointmentDao.removeAppointmentById(id);
+    }
+
+    @Override
+    public Appointment findByEmail(String email) {
+        return appointmentQueryDao.findByEmail(email);
+    }
+
+    @Override
+    public Appointment findByPalletQty(Long palletQty) {
+        return appointmentQueryDao.findByPalletQty(palletQty);
     }
 }

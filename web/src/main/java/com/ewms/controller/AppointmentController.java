@@ -1,49 +1,64 @@
 package com.ewms.controller;
 
-import com.ewms.dto.appointment.AppointmentResponse;
-import com.ewms.dto.appointment.CreateAppointmentRequest;
+import com.ewms.dto.appointment.AppointmentHeaderDto;
+import com.ewms.dto.appointment.ByPalletQtyAndDriverNameQry;
 import com.ewms.model.appointment.Appointment;
 import com.ewms.service.appointment.AppointmentService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.ewms.mapper.AppointmentMapper.MAPPER;
 
-@RestController("/appointments")
+@RestController
+@RequestMapping("/appointments")
 public class AppointmentController {
 
     @Inject
     private AppointmentService appointmentService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody
-    public List<AppointmentResponse> getAll(){
+    @GetMapping
+    public List<AppointmentHeaderDto> getAll(){
         return MAPPER.toAppointmentResponseList(appointmentService.findAll());
     }
 
-    @RequestMapping(method = RequestMethod.POST,consumes = "application/json")
-    @ResponseBody
-    public AppointmentResponse create(@Valid @RequestBody CreateAppointmentRequest createAppointmentRequest){
+    @GetMapping("/{id}")
+    public AppointmentHeaderDto findById(@PathVariable("id") Long id){
+        return MAPPER.toAppointmentResponse(appointmentService.findById(id));
+    }
+
+    @PostMapping(consumes = "application/json")
+    public AppointmentHeaderDto create(@Valid @RequestBody AppointmentHeaderDto createAppointmentRequest){
         Appointment appointment = MAPPER.toAppointment(createAppointmentRequest);
 
         Appointment result = appointmentService.create(appointment);
         return MAPPER.toAppointmentResponse(result);
     }
 
-  //  @RequestMapping("{id}")
+    @GetMapping("/getByEmail")
+    public AppointmentHeaderDto getByEmail(@RequestParam("email") String email){
+        Appointment result = appointmentService.findByEmail(email);
+        return MAPPER.toAppointmentResponse(result);
+    }
+
+    @GetMapping("/getByPalletQty")
+    public AppointmentHeaderDto getByPalletQty(@RequestParam("palletQty") Long palletQty){
+        Appointment result = appointmentService.findByPalletQty(palletQty);
+        return MAPPER.toAppointmentResponse(result);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
-    public AppointmentResponse findById(@PathVariable Long id){
-        return null;
-        //return MAPPER.toAppointmentResponse(appointmentService.findById(id));
+    public AppointmentHeaderDto findByPalletQtyAndDriverName(@RequestBody ByPalletQtyAndDriverNameQry qry){
+        return MAPPER.toAppointmentResponse(appointmentService.findByPalletQtyAndDriverName(qry.getPalletQty(),qry.getDriverName()));
+    }
+
+    @DeleteMapping("/{id}")
+    public AppointmentHeaderDto removeById(@PathVariable("id") Long id){
+        Appointment result = appointmentService.removeById(id);
+        return MAPPER.toAppointmentResponse(result);
     }
 
 }

@@ -1,17 +1,17 @@
-CREATE TABLE `APPT_HEADER` (
-`id` bigint(20),
-`driverName` varchar(45),
-`emailAddress` varchar(45),
-`apptStart` timestamp,
-`palletQty` long(45),
-`apptCmplteTs` timestamp,
-`apptCheckOutTs` timestamp,
-`frontTemp` decimal(11),
-`trailrMiddleTemp` decimal(11),
-`trailrRearTemp` decimal(11),
-`apptRefNumber` varchar(45),
-`driverNumber` integer(45),
-`trailerLoc` varchar(45),
-`caseQty` long(45)
-PRIMARY KEY (`id`)
+CREATE TABLE "APPT_HEADER" (
+"id" BIGINT,
+"driverName" VARCHAR(45),
+"emailAddress" VARCHAR(45),
+"apptStart" TIMESTAMP,
+"palletQty" BIGINT,
+"apptCmplteTs" TIMESTAMP,
+"apptCheckOutTs" TIMESTAMP,
+"frontTemp" DECIMAL(11),
+"trailrMiddleTemp" DECIMAL(11),
+"trailrRearTemp" DECIMAL(11),
+"apptRefNumber" VARCHAR(45),
+"driverNumber" BIGINT,
+"trailerLoc" VARCHAR(45),
+"caseQty" BIGINT,
+PRIMARY KEY ("id")
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

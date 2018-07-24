@@ -1,7 +1,6 @@
 package com.ewms.mapper;
 
-import com.ewms.dto.appointment.AppointmentResponse;
-import com.ewms.dto.appointment.CreateAppointmentRequest;
+import com.ewms.dto.appointment.AppointmentHeaderDto;
 import com.ewms.model.appointment.Appointment;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -21,10 +20,10 @@ public interface AppointmentMapper {
             @Mapping(source = "apptStartTs", target = "apptStart"),
             @Mapping(source = "pltQty", target = "palletQty"),
             @Mapping(source = "trFrontTemp", target = "frontTemp")})
-    Appointment toAppointment(CreateAppointmentRequest appointmentRequest);
+    Appointment toAppointment(AppointmentHeaderDto appointmentRequest);
 
-    AppointmentResponse toAppointmentResponse(Appointment appointment);
+    @InheritInverseConfiguration
+    AppointmentHeaderDto toAppointmentResponse(Appointment appointment);
 
-    List<AppointmentResponse> toAppointmentResponseList(List<Appointment> appointment);
-
+    List<AppointmentHeaderDto> toAppointmentResponseList(List<Appointment> appointment);
 }
