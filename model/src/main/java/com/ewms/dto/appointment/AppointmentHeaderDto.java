@@ -15,18 +15,6 @@ import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Date;
 
-/*
-* Do we really need create appointment header request?
-* If Header DTO represents by itself a complete logicatl data structure with complete set of fields
-* and this set is similar for request and response result why we don't use the it in the following way:
-* AppointmentHeaderDto AppointmentDetailsDto - main DTOs which represents whole page structure
-* and which are used for creation(like request) and for representation (like response)
- * (At the backed they undergo under mapper transformation)
-*
-* Other DTOs are queries queries which are used for searhich or creation specific parts
-* and they can go directly to DAO layer without any remapping. However their result
-* if it is a complete logical structure (like Appointment or AppointmentDetail) should undergo transhormation via mapper?
-* */
 
 @Getter
 @Setter

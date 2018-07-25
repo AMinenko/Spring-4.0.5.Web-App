@@ -1,4 +1,4 @@
-package com.ewms.validation;
+package com.ewms.exceptionhandler;
 
 import com.ewms.PhenixResponce;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,6 @@ public class JavaxValidationAdviceController {
         @ExceptionHandler(MethodArgumentNotValidException.class)
         public  PhenixResponce <Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
             return new PhenixResponce<>("VALIDATION_FAILED", responseCodeHandler.resolve(ex.getBindingResult()));
-
         }
 
 

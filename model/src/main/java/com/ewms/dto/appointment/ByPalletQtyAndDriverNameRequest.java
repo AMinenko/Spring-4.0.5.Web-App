@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ByPalletQtyAndDriverNameQry {
+public class ByPalletQtyAndDriverNameRequest {
     private Long palletQty;
     private String driverName;
 }

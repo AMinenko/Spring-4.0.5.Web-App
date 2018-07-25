@@ -1,16 +1,15 @@
 package com.ewms;
 
+import com.ewms.customvalidators.PhenixGridRequestValidation;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
+@PhenixGridRequestValidation
 public class PhenixRequest {
-
-    @NotNull
-    private Long id;
+    private Long gridIdentifier;
+    private String gridName;
+    private Integer filterBy;
 }
 

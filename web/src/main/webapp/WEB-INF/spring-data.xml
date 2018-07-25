@@ -7,8 +7,8 @@
 
 
     <jdbc:embedded-database id="dataSource" type="H2">
-        <jdbc:script location="/WEB-INF/sql/create.sql" />
-        <jdbc:script location="/WEB-INF/sql/appointments.sql" />
+        <!--<jdbc:script location="/WEB-INF/sql/create.sql" />-->
+        <!--<jdbc:script location="/WEB-INF/sql/appointments.sql" />-->
     </jdbc:embedded-database>
 
 
@@ -22,7 +22,7 @@
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">validate</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
                 <prop key="hibernate.hbm2ddl.import_files">/WEB-INF/sql/appointments.sql</prop>
             </props>
         </property>

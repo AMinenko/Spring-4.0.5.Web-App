@@ -1,13 +1,14 @@
 package com.ewms.controller;
 
 import com.ewms.dto.appointment.AppointmentHeaderDto;
-import com.ewms.dto.appointment.ByPalletQtyAndDriverNameQry;
+import com.ewms.dto.appointment.ByPalletQtyAndDriverNameRequest;
 import com.ewms.model.appointment.Appointment;
 import com.ewms.service.appointment.AppointmentService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 import static com.ewms.mapper.AppointmentMapper.MAPPER;
@@ -25,7 +26,7 @@ public class AppointmentController {
     }
 
     @GetMapping("/{id}")
-    public AppointmentHeaderDto findById(@PathVariable("id") Long id){
+    public AppointmentHeaderDto findById(@PathVariable("id") @Valid @Positive Long id){
         return MAPPER.toAppointmentResponse(appointmentService.findById(id));
     }
 
@@ -49,9 +50,9 @@ public class AppointmentController {
         return MAPPER.toAppointmentResponse(result);
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/by-pallet", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
-    public AppointmentHeaderDto findByPalletQtyAndDriverName(@RequestBody ByPalletQtyAndDriverNameQry qry){
+    public AppointmentHeaderDto findByPalletQtyAndDriverName(@RequestBody ByPalletQtyAndDriverNameRequest qry){
         return MAPPER.toAppointmentResponse(appointmentService.findByPalletQtyAndDriverName(qry.getPalletQty(),qry.getDriverName()));
     }
 

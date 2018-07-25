@@ -1,4 +1,4 @@
-package com.ewms.validation;
+package com.ewms.exceptionhandler;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
